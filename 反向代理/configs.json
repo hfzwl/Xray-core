@@ -1,0 +1,32 @@
+{
+  "log": {"loglevel": "info"},
+  // 关于正向代理的其它配置略...
+  "routing": {
+    "rules": [
+      {
+        "inboundTag": ["reverse"],
+        "outboundTag": "freedom"
+      }
+    ]
+  },
+  "outbounds": [
+    {
+      "protocol": "freedom",
+      "tag": "freedom"
+    },
+    {
+      "protocol": "vless",
+      "settings": {
+        "address": "240d:c010:18:3::a2",
+        "port": 443,
+        "encryption": "none",
+        "id": "ffffffff-ffff-ffff-ffff-ffffffffffff",
+        "reverse": {"tag": "reverse"}
+      },
+      "streamSettings": {
+        "security": "tls","tlsSettings": {"serverName": "26.zrmy.eu.org"},
+        "network": "xhttp","xhttpSettings": {"path": "/xh"}
+      }
+    }
+  ]
+}
