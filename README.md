@@ -10,6 +10,10 @@ curl -LO https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-6
 unzip -o Xray-linux-64.zip
 mv xray /usr/local/bin/
 rm -rf *
+cd /etc/systemd/system/
+curl -LO https://raw.githubusercontent.com/hfzwl/Xray-core/refs/heads/main/etc/systemd/system/xray.service
+systemctl daemon-reload
+systemctl restart xray
 ```
 
 WS：
