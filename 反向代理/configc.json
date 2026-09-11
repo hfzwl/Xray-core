@@ -1,0 +1,34 @@
+{
+  "log": {"loglevel": "info"},
+  "inbounds": [
+    {
+      "port": 8443,
+      "protocol": "vless",
+      "settings": {"decryption": "none","clients": [{"id": "ffffffff-ffff-ffff-ffff-ffffffffffff","reverse": {"tag": "reverse"}}]},
+      "streamSettings": {
+        "network": "xhttp","xhttpSettings": {"path": "/xh"},
+        "security": "tls","tlsSettings": {"serverName": "26.by.now.cc","certificates": [{"certificateFile": "/admin/by.now.cc_ecc/fullchain.cer","keyFile": "/admin/by.now.cc_ecc/by.now.cc.key"}]}
+      }
+    },
+    {"port": 10808,"tag": "mixed","protocol": "mixed"},
+    {
+      "port": 2096,
+      "tag": "vless",
+      "protocol": "vless",
+      "settings": {"decryption": "none","clients": [{"id": "11112222-3333-4444-aaaa-bbbbccccdddd"}]},
+      "streamSettings": {
+        "network": "xhttp","xhttpSettings": {"path": "/xh"},
+        "security": "tls","tlsSettings": {"serverName": "26.by.now.cc","certificates": [{"certificateFile": "/admin/by.now.cc_ecc/fullchain.cer","keyFile": "/admin/by.now.cc_ecc/by.now.cc.key"}]}
+      }
+    }
+  ],
+  "routing": {
+    "rules": [
+      {
+        "inboundTag": ["mixed","vless"],
+        "outboundTag": "reverse"
+      }
+    ]
+  },
+  "outbounds": [{"protocol": "freedom"}]
+}
